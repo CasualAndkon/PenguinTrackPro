@@ -915,13 +915,17 @@
 // ============================================================
 // SUPABASE CONFIGURATION
 // ============================================================
-const SUPABASE_URL  = 'https://zuhphnwrjhbkpqrufmgp.supabase.co';
+const SUPABASE_URL = 'https://zuhphnwrjhbkpqrufmgp.supabase.co';
+const SUPABASE_ANON = '  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1aHBobndyamhia3BxcnVmbWdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzMTg3MjIsImV4cCI6MjA4NTg5NDcyMn0.Cdyqynn7Pr4cO-Y2Yfrl-pvaxQmFIDslKwynYK54nzU
+';
 
-const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1aHBobndyamhia3BxcnVmbWdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzMTg3MjIsImV4cCI6MjA4NTg5NDcyMn0.Cdyqynn7Pr4cO-Y2Yfrl-pvaxQmFIDslKwynYK54nzU';
-
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
-
-// ============================================================
+window.supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON
+);
+  
+  
+  // ============================================================
 // APP STATE
 // ============================================================
 let currentUser    = null;
