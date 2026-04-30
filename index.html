@@ -882,9 +882,9 @@
       </div>
     </div>
     <div class="admin-tabs">
-      <button class="admin-tab active" onclick="switchAdminTab('tab-dashboard')">📊 Dashboard</button>
-      <button class="admin-tab" onclick="switchAdminTab('tab-appointments')">📅 Appt</button>
-      <button class="admin-tab" onclick="switchAdminTab('tab-orders')">📦 Orders</button>
+      <button class="admin-tab active" onclick="switchAdminTab('tab-dashboard', this)">📊 Dashboard</button>
+      <button class="admin-tab" onclick="switchAdminTab('tab-appointments', this)">📅 Appt</button>
+      <button class="admin-tab" onclick="switchAdminTab('tab-orders', this)">📦 Orders</button>
     </div>
     <div class="admin-content" id="admin-content">
       <!-- TAB 1: Dashboard -->
@@ -2124,13 +2124,13 @@ function renderGuestHistory(container) {
 // ============================================================
 // ADMIN TABS
 // ============================================================
-function switchAdminTab(tabId) {
+function switchAdminTab(tabId, btn) {
   // Switch panel
   document.querySelectorAll('.admin-tab-panel').forEach(p => p.classList.remove('active'));
   document.getElementById(tabId).classList.add('active');
   // Switch button highlight
   document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
+  if (btn) btn.classList.add('active');
   // Load data for that tab
   if (tabId === 'tab-appointments') renderAdminApptList();
   if (tabId === 'tab-orders') renderAdminOrderList();
