@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Penguin Auto Specialists</title>
-
+ 
 <!-- Supabase JS client -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
+ 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
+ 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
   :root {
     --dark: #0d1117;
     --dark2: #161b22;
@@ -28,7 +28,7 @@
     --text2: #8b949e;
     --border: #30363d;
   }
-
+ 
   body {
     font-family: 'Inter', sans-serif;
     background: var(--dark);
@@ -38,7 +38,7 @@
     justify-content: center;
     align-items: flex-start;
   }
-
+ 
   .phone-shell {
     width: 390px;
     min-height: 100vh;
@@ -46,7 +46,7 @@
     position: relative;
     overflow: hidden;
   }
-
+ 
   .screen {
     display: none;
     width: 100%;
@@ -55,12 +55,12 @@
     animation: fadeIn 0.25s ease;
   }
   .screen.active { display: flex; }
-
+ 
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
+ 
   /* ===== LOGIN ===== */
   #login {
     background: #0a0f1a;
@@ -68,14 +68,14 @@
     justify-content: center;
     align-items: center;
   }
-
+ 
   .logo-wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 40px;
   }
-
+ 
   .logo-icon {
     width: 72px; height: 72px;
     background: var(--orange);
@@ -85,10 +85,10 @@
     margin-bottom: 16px;
     box-shadow: 0 0 30px rgba(249,115,22,0.3);
   }
-
+ 
   .logo-wrap h1 { font-size: 22px; font-weight: 700; text-align: center; line-height: 1.3; }
   .logo-wrap p  { font-size: 13px; color: var(--text2); margin-top: 4px; }
-
+ 
   .form-group { width: 100%; margin-bottom: 16px; }
   .form-group label { display: block; font-size: 12px; color: var(--text2); margin-bottom: 6px; font-weight: 500; }
   .form-group input {
@@ -104,7 +104,7 @@
     transition: border-color 0.2s;
   }
   .form-group input:focus { border-color: var(--blue); }
-
+ 
   .tfa-boxes { display: flex; gap: 8px; width: 100%; }
   .tfa-box {
     flex: 1;
@@ -120,7 +120,7 @@
     transition: border-color 0.2s;
   }
   .tfa-box:focus { border-color: var(--blue); }
-
+ 
   .btn-primary {
     width: 100%;
     background: var(--blue);
@@ -138,7 +138,7 @@
   .btn-primary:active { transform: scale(0.98); }
   .btn-primary:hover  { background: var(--blue2); }
   .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
-
+ 
   .btn-google {
     width: 100%;
     background: transparent;
@@ -154,7 +154,7 @@
     transition: background 0.2s;
   }
   .btn-google:hover { background: var(--dark3); }
-
+ 
   .divider {
     display: flex; align-items: center; gap: 12px;
     margin: 20px 0 8px;
@@ -162,10 +162,10 @@
     color: var(--text2); font-size: 13px;
   }
   .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
+ 
   .signup-link { text-align: center; font-size: 13px; color: var(--text2); margin-top: 20px; }
   .signup-link span { color: var(--blue); cursor: pointer; font-weight: 500; }
-
+ 
   .error-msg {
     background: rgba(239,68,68,0.1);
     border: 1px solid rgba(239,68,68,0.3);
@@ -175,7 +175,7 @@
     width: 100%; margin-bottom: 12px;
     display: none;
   }
-
+ 
   /* ===== TOPBAR ===== */
   .topbar {
     display: flex; align-items: center; justify-content: space-between;
@@ -200,7 +200,7 @@
     font-size: 14px; font-weight: 700;
     cursor: pointer;
   }
-
+ 
   /* ===== CUSTOMER DASHBOARD ===== */
   .dash-content {
     flex: 1; overflow-y: auto;
@@ -209,7 +209,7 @@
   }
   .greeting { font-size: 22px; font-weight: 700; }
   .greeting span { color: var(--orange); }
-
+ 
   .alert-banner {
     background: var(--orange);
     border-radius: 12px;
@@ -226,7 +226,7 @@
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
   }
-
+ 
   .vehicle-card {
     background: var(--dark2);
     border: 1px solid var(--border);
@@ -235,24 +235,24 @@
   }
   .vehicle-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
   .vehicle-card-header h3 { font-size: 16px; font-weight: 600; }
-
+ 
   .badge { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
   .badge.progress { background: rgba(59,130,246,0.15); color: var(--blue); }
   .badge.complete { background: rgba(34,197,94,0.15); color: var(--green); }
   .badge.pending  { background: rgba(234,179,8,0.15);  color: var(--yellow); }
-
+ 
   .status-label { font-size: 13px; color: var(--text2); margin-bottom: 10px; }
-
+ 
   .stage-bar { display: flex; gap: 4px; margin-bottom: 8px; }
   .stage-seg { flex: 1; height: 4px; border-radius: 2px; background: var(--border); }
   .stage-seg.done   { background: var(--blue); }
   .stage-seg.active { background: var(--orange); }
-
+ 
   .stage-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--text2); }
   .stage-labels span.active-label { color: var(--orange); font-weight: 600; }
-
+ 
   .quick-actions h3 { font-size: 14px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
-
+ 
   .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .action-tile {
     background: var(--dark2);
@@ -273,7 +273,7 @@
     font-size: 22px;
   }
   .action-tile span { font-size: 14px; font-weight: 500; }
-
+ 
   /* ===== BOTTOM NAV ===== */
   .bottom-nav { display: flex; background: var(--dark2); border-top: 1px solid var(--border); padding: 8px 0 4px; }
   .nav-item {
@@ -288,16 +288,16 @@
   }
   .nav-item.active { color: var(--blue); }
   .nav-item .nav-icon { font-size: 20px; }
-
+ 
   /* ===== BOOKING ===== */
   .booking-content { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 20px; }
-
+ 
   .step-indicator { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 4px; }
   .step-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: background 0.3s, width 0.3s; }
   .step-dot.active { background: var(--blue); width: 24px; border-radius: 4px; }
-
+ 
   .section-label { font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
-
+ 
   .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .service-card {
     background: var(--dark2);
@@ -313,7 +313,7 @@
   .service-card .s-icon  { font-size: 28px; }
   .service-card .s-name  { font-size: 13px; font-weight: 600; text-align: center; }
   .service-card .s-price { font-size: 12px; color: var(--text2); }
-
+ 
   .date-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
   .date-chip {
     flex-shrink: 0;
@@ -326,7 +326,7 @@
   }
   .date-chip.selected              { background: var(--blue); border-color: var(--blue); color: white; }
   .date-chip:hover:not(.selected)  { border-color: var(--blue); }
-
+ 
   .time-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
   .time-chip {
     background: var(--dark2);
@@ -339,7 +339,7 @@
   }
   .time-chip.selected              { background: var(--blue); border-color: var(--blue); color: white; }
   .time-chip:hover:not(.selected)  { border-color: var(--blue); }
-
+ 
   .confirm-card {
     background: var(--dark2);
     border: 1px solid var(--border);
@@ -351,14 +351,14 @@
   .confirm-row { display: flex; justify-content: space-between; font-size: 14px; }
   .confirm-row .label { color: var(--text2); }
   .confirm-row .value { font-weight: 600; }
-
+ 
   /* ===== STATUS ===== */
   .status-content { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
-
+ 
   .big-stage-card { background: var(--dark2); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
   .big-stage-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
   .big-stage-sub   { font-size: 13px; color: var(--text2); margin-bottom: 20px; }
-
+ 
   .pipeline { display: flex; flex-direction: column; gap: 0; }
   .pipeline-step { display: flex; align-items: flex-start; gap: 14px; position: relative; }
   .pipeline-step:not(:last-child)::after {
@@ -368,7 +368,7 @@
     background: var(--border);
   }
   .pipeline-step.done:not(:last-child)::after { background: var(--green); }
-
+ 
   .step-circle {
     width: 32px; height: 32px;
     border-radius: 50%;
@@ -380,26 +380,26 @@
   }
   .pipeline-step.done    .step-circle { background: var(--green);  border-color: var(--green); }
   .pipeline-step.current .step-circle { background: var(--orange); border-color: var(--orange); animation: pulse 1.5s infinite; }
-
+ 
   @keyframes pulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.4); }
     50%       { box-shadow: 0 0 0 8px rgba(249,115,22,0); }
   }
-
+ 
   .step-info { padding-top: 6px; }
   .step-info .step-name { font-size: 14px; font-weight: 600; }
   .step-info .step-desc { font-size: 12px; color: var(--text2); margin-top: 2px; }
-
+ 
   /* ===== PAYMENTS ===== */
   .payments-content { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
-
+ 
   .invoice-card { background: var(--dark2); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
   .invoice-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
   .invoice-header h3 { font-size: 16px; font-weight: 700; }
   .invoice-row { display: flex; justify-content: space-between; font-size: 14px; padding: 6px 0; }
   .invoice-row .label { color: var(--text2); }
   .invoice-total { display: flex; justify-content: space-between; font-size: 16px; font-weight: 700; padding: 14px 0 0; margin-top: 8px; border-top: 1px solid var(--border); }
-
+ 
   .pay-methods { display: flex; flex-direction: column; gap: 10px; }
   .pay-method {
     background: var(--dark2);
@@ -414,14 +414,14 @@
   .pay-method .pm-icon  { font-size: 24px; }
   .pay-method .pm-label { font-size: 14px; font-weight: 600; }
   .pay-method .pm-sub   { font-size: 12px; color: var(--text2); }
-
+ 
   /* ===== TECHNICIAN ===== */
   .tech-content { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
   .tech-header-card { background: var(--dark2); border: 1px solid var(--border); border-radius: 14px; padding: 16px; display: flex; align-items: center; gap: 14px; }
   .tech-avatar { width: 48px; height: 48px; background: var(--blue); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; }
   .tech-name { font-size: 16px; font-weight: 700; }
   .tech-role { font-size: 13px; color: var(--text2); }
-
+ 
   .jobs-list { display: flex; flex-direction: column; gap: 10px; }
   .job-card {
     background: var(--dark2);
@@ -439,13 +439,16 @@
   .job-time .mins       { font-size: 18px; font-weight: 700; color: var(--orange); }
   .job-time .mins-label { font-size: 10px; color: var(--text2); }
   .job-arrow { width: 32px; height: 32px; background: var(--dark3); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 16px; }
-
+ 
   /* ===== ADMIN ===== */
   #admin { background: #0d1117; flex-direction: column; }
   .admin-topbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; background: var(--dark2); border-bottom: 1px solid var(--border); }
   .admin-topbar h2 { font-size: 18px; font-weight: 700; }
-  .admin-content { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 16px; }
-
+  .admin-content { flex: 1; overflow-y: auto; padding: 16px; }
+  .admin-tab-panel { display: none; }
+  .admin-tab-panel.active { display: flex; flex-direction: column; gap: 16px; }
+  .admin-form .admin-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+ 
   .kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .kpi-card { background: var(--dark2); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
   .kpi-label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
@@ -453,10 +456,10 @@
   .kpi-change { font-size: 12px; margin-top: 4px; font-weight: 500; }
   .kpi-change.up   { color: var(--green); }
   .kpi-change.down { color: var(--red); }
-
+ 
   .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
   .section-header h3 { font-size: 15px; font-weight: 700; }
-
+ 
   .orders-table { background: var(--dark2); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
   .table-head { display: grid; grid-template-columns: 70px 1fr 90px 70px; padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 11px; color: var(--text2); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
   .table-row { display: grid; grid-template-columns: 70px 1fr 90px 70px; padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 13px; align-items: center; transition: background 0.15s; cursor: pointer; }
@@ -466,12 +469,12 @@
   .order-vehicle { font-weight: 600; }
   .order-service { color: var(--text2); font-size: 12px; margin-top: 2px; }
   .order-amount  { font-weight: 700; text-align: right; }
-
+ 
   .status-pill { padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; text-align: center; letter-spacing: 0.3px; }
   .status-pill.completed  { background: rgba(34,197,94,0.15);  color: var(--green); }
   .status-pill.inprogress { background: rgba(59,130,246,0.15); color: var(--blue); }
   .status-pill.pending    { background: rgba(234,179,8,0.15);  color: var(--yellow); }
-
+ 
   .revenue-chart { background: var(--dark2); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
   .chart-bars { display: flex; align-items: flex-end; gap: 8px; height: 100px; margin: 16px 0 8px; }
   .bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
@@ -479,7 +482,7 @@
   .bar:hover { background: var(--orange); }
   .bar-month { font-size: 10px; color: var(--text2); }
   .bar-val   { font-size: 10px; color: var(--text2); margin-top: 4px; }
-
+ 
   .tech-panel { background: var(--dark2); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
   .tech-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
   .tech-row:last-child { border-bottom: none; }
@@ -488,7 +491,7 @@
   .tech-info .t-role { font-size: 12px; color: var(--text2); }
   .tech-info { flex: 1; }
   .tech-status { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; background: rgba(34,197,94,0.15); color: var(--green); }
-
+ 
   /* ===== ROLE SELECT ===== */
   #role-select { justify-content: center; align-items: center; padding: 40px 24px; gap: 20px; background: #0a0f1a; }
   .role-title { font-size: 24px; font-weight: 700; text-align: center; margin-bottom: 8px; }
@@ -498,7 +501,7 @@
   .role-card .r-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
   .role-card .r-title { font-size: 16px; font-weight: 700; }
   .role-card .r-desc  { font-size: 13px; color: var(--text2); margin-top: 2px; }
-
+ 
   /* ===== TOAST ===== */
   .toast {
     position: fixed; bottom: 80px; left: 50%;
@@ -511,7 +514,7 @@
   }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   .toast.error { background: var(--red); }
-
+ 
   /* ===== MODAL ===== */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; align-items: flex-end; justify-content: center; }
   .modal-overlay.show { display: flex; }
@@ -519,7 +522,7 @@
   @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
   .modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 2px; margin: 0 auto 20px; }
   .modal-title { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
-
+ 
   /* ===== HISTORY ===== */
   #history { background: var(--dark); flex-direction: column; }
   .history-content { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
@@ -529,26 +532,74 @@
   .history-service { font-size: 13px; color: var(--text2); margin-top: 2px; }
   .history-date    { font-size: 12px; color: var(--text2); }
   .history-amount  { font-size: 16px; font-weight: 700; color: var(--green); }
-
+ 
   /* Spinner */
   .spinner { width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
+ 
   /* Loading state */
   .loading-state { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 40px; color: var(--text2); font-size: 14px; }
-
+ 
   /* Empty state */
   .empty-state { text-align: center; padding: 40px 20px; color: var(--text2); }
   .empty-state .empty-icon { font-size: 40px; margin-bottom: 12px; }
   .empty-state p { font-size: 14px; }
-
+ 
   /* Guest mode */
   #guest-pick { justify-content: center; align-items: center; padding: 40px 24px; gap: 16px; background: #0a0f1a; }
+ 
+  /* ===== ADMIN TABS ===== */
+  .admin-tabs { display: flex; gap: 6px; padding: 12px 16px 0; background: var(--dark2); border-bottom: 1px solid var(--border); }
+  .admin-tab {
+    flex: 1; padding: 10px 6px; font-size: 12px; font-weight: 600;
+    background: none; border: none; border-bottom: 2px solid transparent;
+    color: var(--text2); cursor: pointer; font-family: 'Inter', sans-serif;
+    transition: all 0.2s; text-align: center;
+  }
+  .admin-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+  .admin-tab-panel { display: none; }
+  .admin-tab-panel.active { display: flex; flex-direction: column; gap: 16px; }
+ 
+  /* ===== ADMIN FORMS ===== */
+  .admin-form { background: var(--dark2); border: 1px solid var(--border); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+  .admin-form label { font-size: 12px; color: var(--text2); font-weight: 500; margin-bottom: 4px; display: block; }
+  .admin-form input, .admin-form select, .admin-form textarea {
+    width: 100%; background: var(--dark3); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px; color: var(--text);
+    font-size: 14px; font-family: 'Inter', sans-serif; outline: none;
+    transition: border-color 0.2s;
+  }
+  .admin-form input:focus, .admin-form select:focus, .admin-form textarea:focus { border-color: var(--blue); }
+  .admin-form select option { background: var(--dark3); }
+  .admin-form textarea { resize: vertical; min-height: 70px; }
+  .admin-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .form-field { display: flex; flex-direction: column; }
+  .btn-admin {
+    width: 100%; background: var(--blue); color: white; border: none;
+    border-radius: 12px; padding: 14px; font-size: 15px; font-weight: 600;
+    font-family: 'Inter', sans-serif; cursor: pointer; transition: background 0.2s;
+  }
+  .btn-admin:hover { background: var(--blue2); }
+  .btn-admin.green { background: var(--green); }
+  .btn-admin.green:hover { background: #16a34a; }
+ 
+  /* ===== ORDER LIST ===== */
+  .order-list { display: flex; flex-direction: column; gap: 10px; }
+  .order-item {
+    background: var(--dark2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .order-item-left .oi-name { font-size: 14px; font-weight: 600; }
+  .order-item-left .oi-meta { font-size: 12px; color: var(--text2); margin-top: 2px; }
+  .order-item-right { text-align: right; }
+  .order-item-right .oi-qty { font-size: 13px; color: var(--text2); }
+  .order-item-right .oi-price { font-size: 15px; font-weight: 700; color: var(--orange); }
 </style>
 </head>
 <body>
 <div class="phone-shell">
-
+ 
   <!-- ===================== ROLE SELECT ===================== -->
   <div class="screen active" id="role-select">
     <div class="logo-wrap" style="margin-bottom:8px">
@@ -558,7 +609,7 @@
     </div>
     <p class="role-title" style="font-size:18px">Select your role</p>
     <p class="role-sub">Choose how you'd like to sign in</p>
-
+ 
     <div class="role-card" onclick="goToLogin('customer')">
       <div class="r-icon" style="background:rgba(59,130,246,0.15)">👤</div>
       <div><div class="r-title">Customer</div><div class="r-desc">Book services, track repairs, pay invoices</div></div>
@@ -580,7 +631,7 @@
       <span style="margin-left:auto;color:var(--text2)">›</span>
     </div>
   </div>
-
+ 
   <!-- ===================== LOGIN ===================== -->
   <div class="screen" id="login">
     <div style="padding:16px 20px;display:flex;align-items:center;gap:12px;cursor:pointer" onclick="showScreen('role-select')">
@@ -626,7 +677,7 @@
       <p class="signup-link">Don't have an account? <span onclick="handleSignUp()">Sign up</span></p>
     </div>
   </div>
-
+ 
   <!-- ===================== CUSTOMER DASHBOARD ===================== -->
   <div class="screen" id="dashboard">
     <div class="topbar">
@@ -673,7 +724,7 @@
       <button class="nav-item" id="history-nav" onclick="showScreen('history');setNavActive('history-nav');loadHistory()"><span class="nav-icon">📋</span>History</button>
     </div>
   </div>
-
+ 
   <!-- ===================== BOOKING ===================== -->
   <div class="screen" id="booking">
     <div class="topbar">
@@ -731,7 +782,7 @@
       <button class="nav-item" onclick="showScreen('history');loadHistory()"><span class="nav-icon">📋</span>History</button>
     </div>
   </div>
-
+ 
   <!-- ===================== STATUS ===================== -->
   <div class="screen" id="status">
     <div class="topbar">
@@ -752,7 +803,7 @@
       <button class="nav-item" onclick="showScreen('history');loadHistory()"><span class="nav-icon">📋</span>History</button>
     </div>
   </div>
-
+ 
   <!-- ===================== PAYMENTS ===================== -->
   <div class="screen" id="payments">
     <div class="topbar">
@@ -773,7 +824,7 @@
       <button class="nav-item" onclick="showScreen('history');loadHistory()"><span class="nav-icon">📋</span>History</button>
     </div>
   </div>
-
+ 
   <!-- ===================== HISTORY ===================== -->
   <div class="screen" id="history">
     <div class="topbar">
@@ -794,7 +845,7 @@
       <button class="nav-item active"><span class="nav-icon">📋</span>History</button>
     </div>
   </div>
-
+ 
   <!-- ===================== TECHNICIAN ===================== -->
   <div class="screen" id="technician">
     <div class="topbar">
@@ -817,24 +868,146 @@
       </div>
     </div>
   </div>
-
+ 
   <!-- ===================== ADMIN ===================== -->
   <div class="screen" id="admin">
     <div class="admin-topbar">
       <div style="display:flex;align-items:center;gap:10px">
         <div style="width:32px;height:32px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px">🐧</div>
-        <h2>Dashboard</h2>
+        <h2>Admin Panel</h2>
       </div>
       <div style="display:flex;align-items:center;gap:10px">
         <div style="width:34px;height:34px;background:var(--dark3);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer" id="admin-avatar" onclick="showModal('logout-modal')">A</div>
         <span style="font-size:13px;color:var(--text2)">Admin</span>
       </div>
     </div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab('tab-dashboard')">📊 Dashboard</button>
+      <button class="admin-tab" onclick="switchAdminTab('tab-appointments')">📅 Appt</button>
+      <button class="admin-tab" onclick="switchAdminTab('tab-orders')">📦 Orders</button>
+    </div>
     <div class="admin-content" id="admin-content">
-      <div class="loading-state"><span class="spinner"></span> Loading dashboard…</div>
+      <!-- TAB 1: Dashboard -->
+      <div class="admin-tab-panel active" id="tab-dashboard">
+        <div class="loading-state"><span class="spinner"></span> Loading dashboard…</div>
+      </div>
+      <!-- TAB 2: Make Appointment -->
+      <div class="admin-tab-panel" id="tab-appointments">
+        <div style="font-size:13px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:0.5px">New Appointment</div>
+        <div class="admin-form">
+          <div class="form-field">
+            <label>Customer Name</label>
+            <input type="text" id="appt-customer" placeholder="e.g. John Smith">
+          </div>
+          <div class="admin-form-row">
+            <div class="form-field">
+              <label>Vehicle Make</label>
+              <input type="text" id="appt-make" placeholder="e.g. Toyota">
+            </div>
+            <div class="form-field">
+              <label>Model</label>
+              <input type="text" id="appt-model" placeholder="e.g. Camry">
+            </div>
+          </div>
+          <div class="admin-form-row">
+            <div class="form-field">
+              <label>Year</label>
+              <input type="number" id="appt-year" placeholder="2022" min="1990" max="2030">
+            </div>
+            <div class="form-field">
+              <label>Service</label>
+              <select id="appt-service">
+                <option value="">Select service…</option>
+                <option value="Oil Change">Oil Change — $89</option>
+                <option value="Tire Rotation">Tire Rotation — $65</option>
+                <option value="Brake Service">Brake Service — $245</option>
+                <option value="Full Diagnostic">Full Diagnostic — $150</option>
+                <option value="Transmission">Transmission — $1250</option>
+              </select>
+            </div>
+          </div>
+          <div class="admin-form-row">
+            <div class="form-field">
+              <label>Date</label>
+              <input type="date" id="appt-date">
+            </div>
+            <div class="form-field">
+              <label>Time</label>
+              <input type="time" id="appt-time" value="09:00">
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Assign Technician</label>
+            <select id="appt-tech">
+              <option value="">— Unassigned —</option>
+              <option value="tech-1">Mike Chen</option>
+              <option value="tech-2">Sarah Johnson</option>
+              <option value="tech-3">James Lee</option>
+              <option value="tech-4">Emily Brown</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Notes (optional)</label>
+            <textarea id="appt-notes" placeholder="Any special instructions…"></textarea>
+          </div>
+          <button class="btn-admin" style="background:var(--green)" onclick="adminCreateAppointment()">📅 Book Appointment</button>
+        </div>
+        <div style="font-size:13px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:0.5px">Recent Appointments</div>
+        <div id="admin-appt-list" style="display:flex;flex-direction:column;gap:10px">
+          <div class="empty-state"><div class="empty-icon">📅</div><p>No appointments booked yet.</p></div>
+        </div>
+        <div style="height:20px"></div>
+      </div>
+      <!-- TAB 3: Order Products -->
+      <div class="admin-tab-panel" id="tab-orders">
+        <div style="font-size:13px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:0.5px">Order Parts / Supplies</div>
+        <div class="admin-form">
+          <div class="form-field">
+            <label>Product Name</label>
+            <input type="text" id="prod-name" placeholder="e.g. Synthetic Motor Oil 5W-30">
+          </div>
+          <div class="form-field">
+            <label>Category</label>
+            <select id="prod-category">
+              <option value="">Select category…</option>
+              <option value="Oil and Fluids">Oil and Fluids</option>
+              <option value="Brakes">Brakes</option>
+              <option value="Tires and Wheels">Tires and Wheels</option>
+              <option value="Filters">Filters</option>
+              <option value="Electrical">Electrical</option>
+              <option value="Tools and Equipment">Tools and Equipment</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="admin-form-row">
+            <div class="form-field">
+              <label>Quantity</label>
+              <input type="number" id="prod-qty" placeholder="1" min="1" value="1" oninput="updateOrderTotal()">
+            </div>
+            <div class="form-field">
+              <label>Unit Price ($)</label>
+              <input type="number" id="prod-price" placeholder="0.00" min="0" step="0.01" oninput="updateOrderTotal()">
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Supplier / Notes</label>
+            <input type="text" id="prod-supplier" placeholder="e.g. AutoZone, Amazon…">
+          </div>
+          <div style="background:var(--dark3);border-radius:10px;padding:12px 14px;font-size:14px;display:flex;justify-content:space-between;align-items:center">
+            <span style="color:var(--text2)">Order Total</span>
+            <span id="prod-total" style="font-weight:700;color:var(--orange)">$0.00</span>
+          </div>
+          <button class="btn-admin" onclick="adminSubmitOrder()">📦 Place Order</button>
+        </div>
+        <div style="font-size:13px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:0.5px">Order History</div>
+        <div id="admin-order-list" style="display:flex;flex-direction:column;gap:10px">
+          <div class="empty-state"><div class="empty-icon">📦</div><p>No orders placed yet.</p></div>
+        </div>
+        <div style="height:20px"></div>
+      </div>
     </div>
   </div>
-
+ 
   <!-- ===================== GUEST PICK ===================== -->
   <div class="screen" id="guest-pick">
     <div style="padding:16px 20px;display:flex;align-items:center;gap:12px;cursor:pointer" onclick="showScreen('role-select')">
@@ -868,7 +1041,7 @@
       </div>
     </div>
   </div>
-
+ 
   <!-- ===================== MODALS ===================== -->
   <div class="modal-overlay" id="chat-modal" onclick="closeModal('chat-modal')">
     <div class="modal-sheet" onclick="event.stopPropagation()">
@@ -883,7 +1056,7 @@
       </div>
     </div>
   </div>
-
+ 
   <div class="modal-overlay" id="logout-modal" onclick="closeModal('logout-modal')">
     <div class="modal-sheet" onclick="event.stopPropagation()">
       <div class="modal-handle"></div>
@@ -895,7 +1068,7 @@
       </div>
     </div>
   </div>
-
+ 
   <div class="modal-overlay" id="job-modal" onclick="closeModal('job-modal')">
     <div class="modal-sheet" onclick="event.stopPropagation()">
       <div class="modal-handle"></div>
@@ -907,22 +1080,17 @@
       </div>
     </div>
   </div>
-
+ 
   <div class="toast" id="toast"></div>
 </div>
-
+ 
 <script>
 // ============================================================
 // SUPABASE CONFIGURATION
 // ============================================================
 const SUPABASE_URL = 'https://zuhphnwrjhbkpqrufmgp.supabase.co';
-const SUPABASE_ANON = '  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1aHBobndyamhia3BxcnVmbWdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzMTg3MjIsImV4cCI6MjA4NTg5NDcyMn0.Cdyqynn7Pr4cO-Y2Yfrl-pvaxQmFIDslKwynYK54nzU
-';
-
-window.supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON
-);
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1aHBobndyamhia3BxcnVmbWdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzMTg3MjIsImV4cCI6MjA4NTg5NDcyMn0.Cdyqynn7Pr4cO-Y2Yfrl-pvaxQmFIDslKwynYK54nzU';
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
   
   
   // ============================================================
@@ -932,7 +1100,7 @@ let currentUser    = null;
 let currentProfile = null;
 let currentRole    = 'customer';
 let isGuest        = false;
-
+ 
 // Booking state
 let selectedServiceId    = null;
 let selectedServiceName  = '';
@@ -940,20 +1108,20 @@ let selectedServicePrice = 0;
 let selectedDate         = null;
 let selectedTime         = '10:00 AM';
 let myVehicleId          = null;
-
+ 
 // Active order (for status & chat)
 let activeOrderId  = null;
 let statusChannel  = null;
 let chatChannel    = null;
-
+ 
 // Active invoice (for payment)
 let activeInvoiceId    = null;
 let activeInvoiceTotal = 0;
 let selectedPayMethod  = 'card';
-
+ 
 // Active job (for technician modal)
 let activeJobId = null;
-
+ 
 // ============================================================
 // SCREEN NAVIGATION
 // ============================================================
@@ -962,13 +1130,13 @@ function showScreen(id) {
   document.getElementById(id).classList.add('active');
   window.scrollTo(0, 0);
 }
-
+ 
 function setNavActive(id) {
   document.querySelectorAll('#dashboard .nav-item').forEach(n => n.classList.remove('active'));
   const el = document.getElementById(id);
   if (el) el.classList.add('active');
 }
-
+ 
 // ============================================================
 // AUTH — LOGIN
 // ============================================================
@@ -976,29 +1144,29 @@ function goToLogin(role) {
   currentRole = role;
   showScreen('login');
 }
-
+ 
 async function handleLogin() {
   const email = document.getElementById('login-email').value.trim();
   const pass  = document.getElementById('login-pass').value;
   const err   = document.getElementById('login-error');
   const btn   = document.getElementById('login-btn');
-
+ 
   if (!email || !pass) {
     err.textContent = 'Please enter your email and password.';
     err.style.display = 'block';
     return;
   }
-
+ 
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span> Signing in…';
   err.style.display = 'none';
-
+ 
   try {
-    const { error } = await supabase.auth.signInWithPassword({ email, password: pass });
+    const { error } = await db.auth.signInWithPassword({ email, password: pass });
     if (error) throw error;
-
+ 
     // Check if MFA is required
-    const { data: aal } = await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
+    const { data: aal } = await db.auth.mfa.getAuthenticatorAssuranceLevel();
     if (aal.nextLevel === 'aal2' && aal.nextLevel !== aal.currentLevel) {
       // Show 2FA input and wait for code
       document.getElementById('tfa-group').style.display = 'block';
@@ -1007,7 +1175,7 @@ async function handleLogin() {
       btn.onclick = handleMfaVerify;
       return;
     }
-
+ 
     await postLoginRoute();
   } catch (e) {
     err.textContent = e.message || 'Login failed. Please check your credentials.';
@@ -1017,29 +1185,29 @@ async function handleLogin() {
     btn.onclick = handleLogin;
   }
 }
-
+ 
 async function handleMfaVerify() {
   const code = ['t1','t2','t3','t4','t5','t6'].map(id => document.getElementById(id).value).join('');
   const err  = document.getElementById('login-error');
   const btn  = document.getElementById('login-btn');
-
+ 
   if (code.length < 6) {
     err.textContent = 'Please enter all 6 digits of your authentication code.';
     err.style.display = 'block';
     return;
   }
-
+ 
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span> Verifying…';
-
+ 
   try {
-    const { data: factors } = await supabase.auth.mfa.listFactors();
+    const { data: factors } = await db.auth.mfa.listFactors();
     const totp = factors.totp?.[0];
     if (!totp) throw new Error('No MFA factor found.');
-
-    const { data: challenge } = await supabase.auth.mfa.challenge({ factorId: totp.id });
-    await supabase.auth.mfa.verify({ factorId: totp.id, challengeId: challenge.id, code });
-
+ 
+    const { data: challenge } = await db.auth.mfa.challenge({ factorId: totp.id });
+    await db.auth.mfa.verify({ factorId: totp.id, challengeId: challenge.id, code });
+ 
     await postLoginRoute();
   } catch (e) {
     err.textContent = e.message || 'Invalid verification code.';
@@ -1048,56 +1216,56 @@ async function handleMfaVerify() {
     btn.textContent = 'Verify Code';
   }
 }
-
+ 
 async function postLoginRoute() {
-  const { data: { user } } = await supabase.auth.getUser();
+  const { data: { user } } = await db.auth.getUser();
   currentUser = user;
-
+ 
   const { data: profile } = await supabase
     .from('profiles')
     .select('*')
     .eq('id', user.id)
     .single();
-
+ 
   currentProfile = profile;
-
+ 
   if      (profile.role === 'technician') { showScreen('technician'); loadTechDashboard(); }
   else if (profile.role === 'admin')      { showScreen('admin');      loadAdminDashboard(); }
   else                                    { showScreen('dashboard');  loadCustomerDashboard(); }
 }
-
+ 
 async function handleGoogleLogin() {
-  const { error } = await supabase.auth.signInWithOAuth({
+  const { error } = await db.auth.signInWithOAuth({
     provider: 'google',
     options: { queryParams: { access_type: 'offline', prompt: 'consent' } }
   });
   if (error) showToast('Google login failed: ' + error.message, true);
 }
-
+ 
 async function handleForgotPassword() {
   const email = document.getElementById('login-email').value.trim();
   if (!email) { showToast('Enter your email first', true); return; }
-  const { error } = await supabase.auth.resetPasswordForEmail(email);
+  const { error } = await db.auth.resetPasswordForEmail(email);
   if (error) showToast(error.message, true);
   else showToast('Password reset email sent ✓');
 }
-
+ 
 function handleSignUp() {
   showToast('Sign up: use Supabase Auth UI or a dedicated sign-up screen');
 }
-
+ 
 async function handleSignOut() {
   closeModal('logout-modal');
   // Unsubscribe from real-time channels
-  if (statusChannel) supabase.removeChannel(statusChannel);
-  if (chatChannel)   supabase.removeChannel(chatChannel);
-
-  await supabase.auth.signOut();
+  if (statusChannel) db.removeChannel(statusChannel);
+  if (chatChannel)   db.removeChannel(chatChannel);
+ 
+  await db.auth.signOut();
   currentUser = currentProfile = null;
   isGuest = false;
   showScreen('role-select');
 }
-
+ 
 // ============================================================
 // GUEST MODE
 // ============================================================
@@ -1108,7 +1276,7 @@ function guestEnter(role) {
   else if (role === 'admin')      { showScreen('admin');      loadGuestAdmin(); }
   else                            { showScreen('dashboard');  loadGuestDashboard(); }
 }
-
+ 
 // ============================================================
 // CUSTOMER DASHBOARD
 // ============================================================
@@ -1118,7 +1286,7 @@ async function loadCustomerDashboard() {
   const last  = name.split(' ').slice(1).join(' ');
   document.getElementById('dash-greeting').innerHTML = `${first} <span>${last}</span>`;
   document.getElementById('dash-avatar').textContent = first[0]?.toUpperCase() || '?';
-
+ 
   try {
     // Fetch active order
     const { data: order } = await supabase
@@ -1134,7 +1302,7 @@ async function loadCustomerDashboard() {
       .order('created_at', { ascending: false })
       .limit(1)
       .maybeSingle();
-
+ 
     if (order) {
       activeOrderId = order.id;
       if (order.status === 'ready') {
@@ -1149,14 +1317,14 @@ async function loadCustomerDashboard() {
           <p>No active service orders.<br>Book a service to get started!</p>
         </div>`;
     }
-
+ 
     // Fetch first vehicle for booking
     const { data: vehicles } = await supabase
       .from('vehicles')
       .select('id, make, model, year')
       .eq('owner_id', currentUser.id)
       .limit(1);
-
+ 
     if (vehicles?.length) {
       myVehicleId = vehicles[0].id;
       document.getElementById('confirm-vehicle').textContent =
@@ -1165,39 +1333,39 @@ async function loadCustomerDashboard() {
   } catch (e) {
     console.error('Dashboard load error:', e);
   }
-
+ 
   // Load services for booking screen
   loadServices();
   buildDateRow();
 }
-
+ 
 function renderActiveOrderCard(order) {
   const stages   = ['pending','inspection','diagnostics','repair','testing','ready','completed'];
   const labels   = ['Inspection','Diagnostics','Repair','Testing','Ready'];
   const pipelineStages = ['inspection','diagnostics','repair','testing','ready'];
   const idx      = pipelineStages.indexOf(order.status);
   const step     = idx + 1;
-
+ 
   const segs = pipelineStages.map((s, i) => {
     if (i < idx) return `<div class="stage-seg done"></div>`;
     if (i === idx) return `<div class="stage-seg active"></div>`;
     return `<div class="stage-seg"></div>`;
   }).join('');
-
+ 
   const labelHtml = labels.map((l, i) => {
     const cls = i === idx ? 'active-label' : '';
     return `<span class="${cls}">${l}</span>`;
   }).join('');
-
+ 
   const vehicleName = order.vehicle
     ? `${order.vehicle.year} ${order.vehicle.make} ${order.vehicle.model}`
     : 'Your Vehicle';
-
+ 
   const badgeClass = order.status === 'completed' ? 'complete' :
                      order.status === 'pending'   ? 'pending'  : 'progress';
   const badgeText  = order.status === 'completed' ? 'Complete' :
                      order.status === 'pending'   ? 'Pending'  : 'In Progress';
-
+ 
   document.getElementById('active-order-card').innerHTML = `
     <div class="vehicle-card">
       <div class="vehicle-card-header">
@@ -1214,9 +1382,9 @@ function renderActiveOrderCard(order) {
       <div class="stage-labels">${labelHtml}</div>
     </div>`;
 }
-
+ 
 function subscribeToOrderStatus(orderId) {
-  if (statusChannel) supabase.removeChannel(statusChannel);
+  if (statusChannel) db.removeChannel(statusChannel);
   statusChannel = supabase
     .channel(`order-status-${orderId}`)
     .on('postgres_changes', {
@@ -1235,7 +1403,7 @@ function subscribeToOrderStatus(orderId) {
     })
     .subscribe();
 }
-
+ 
 // ============================================================
 // BOOKING
 // ============================================================
@@ -1245,9 +1413,9 @@ async function loadServices() {
     .select('*')
     .eq('active', true)
     .order('base_price');
-
+ 
   if (!services?.length) return;
-
+ 
   document.getElementById('service-grid').innerHTML = services.map(s => `
     <div class="service-card" onclick="selectService(this,'${s.id}','${s.name}',${s.base_price})">
       <div class="s-icon">${s.icon || '🔧'}</div>
@@ -1255,13 +1423,13 @@ async function loadServices() {
       <div class="s-price">$${s.base_price.toFixed(0)}</div>
     </div>`).join('');
 }
-
+ 
 function buildDateRow() {
   const row  = document.getElementById('date-row');
   const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   let html = '';
-
+ 
   for (let i = 0; i < 7; i++) {
     const d     = new Date();
     d.setDate(d.getDate() + i);
@@ -1276,7 +1444,7 @@ function buildDateRow() {
   row.innerHTML = html;
   selectedDate  = new Date().toISOString().split('T')[0];
 }
-
+ 
 function selectService(el, id, name, price) {
   document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
   el.classList.add('selected');
@@ -1289,7 +1457,7 @@ function selectService(el, id, name, price) {
   document.getElementById('step1').classList.add('active');
   document.getElementById('step2').classList.add('active');
 }
-
+ 
 function selectDate(el) {
   document.querySelectorAll('.date-chip').forEach(c => c.classList.remove('selected'));
   el.classList.add('selected');
@@ -1297,7 +1465,7 @@ function selectDate(el) {
   document.getElementById('confirm-date').textContent = el.innerText.replace('\n',' ');
   document.getElementById('step2').classList.add('active');
 }
-
+ 
 function selectTime(el) {
   document.querySelectorAll('.time-chip').forEach(c => c.classList.remove('selected'));
   el.classList.add('selected');
@@ -1305,16 +1473,16 @@ function selectTime(el) {
   document.getElementById('confirm-time').textContent = selectedTime;
   document.getElementById('step3').classList.add('active');
 }
-
+ 
 async function confirmBooking() {
   if (!selectedServiceId) { showToast('Please select a service first', true); return; }
   if (isGuest)            { showToast('Sign in to book a service', true); return; }
   if (!myVehicleId)       { showToast('No vehicle found on your account', true); return; }
-
+ 
   const btn = document.getElementById('book-btn');
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span> Booking…';
-
+ 
   try {
     // Build ISO datetime from selected date + time
     const [time, meridiem] = selectedTime.split(' ');
@@ -1322,7 +1490,7 @@ async function confirmBooking() {
     if (meridiem === 'PM' && hours !== 12) hours += 12;
     if (meridiem === 'AM' && hours === 12) hours  = 0;
     const scheduledAt = new Date(`${selectedDate}T${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:00`).toISOString();
-
+ 
     const { data, error } = await supabase
       .from('repair_orders')
       .insert({
@@ -1335,10 +1503,10 @@ async function confirmBooking() {
       })
       .select()
       .single();
-
+ 
     if (error) throw error;
     activeOrderId = data.id;
-
+ 
     showToast('Appointment booked! ✓');
     setTimeout(() => { showScreen('dashboard'); setNavActive('home-nav'); loadCustomerDashboard(); }, 1200);
   } catch (e) {
@@ -1348,16 +1516,16 @@ async function confirmBooking() {
     btn.textContent = 'Continue →';
   }
 }
-
+ 
 // ============================================================
 // STATUS SCREEN
 // ============================================================
 async function loadStatus() {
   const container = document.getElementById('status-content');
   if (isGuest) { renderGuestStatus(container); return; }
-
+ 
   container.innerHTML = '<div class="loading-state"><span class="spinner"></span> Loading status…</div>';
-
+ 
   try {
     const { data: order } = await supabase
       .from('repair_orders')
@@ -1372,12 +1540,12 @@ async function loadStatus() {
       .order('created_at', { ascending: false })
       .limit(1)
       .maybeSingle();
-
+ 
     if (!order) {
       container.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div><p>No active repair orders found.</p></div>`;
       return;
     }
-
+ 
     activeOrderId = order.id;
     container.innerHTML = renderStatusHTML(order);
     subscribeToOrderStatus(order.id);
@@ -1385,7 +1553,7 @@ async function loadStatus() {
     container.innerHTML = `<div class="empty-state"><div class="empty-icon">⚠️</div><p>${e.message}</p></div>`;
   }
 }
-
+ 
 function renderStatusHTML(order) {
   const pipelineStages = [
     { key: 'inspection',  label: 'Inspection',  desc: 'Vehicle checked in and assessed' },
@@ -1394,12 +1562,12 @@ function renderStatusHTML(order) {
     { key: 'testing',     label: 'Testing',     desc: 'Quality check and road test' },
     { key: 'ready',       label: 'Ready',       desc: 'Vehicle ready for pickup' }
   ];
-
+ 
   const currentIdx = pipelineStages.findIndex(s => s.key === order.status);
   const vehicleName = order.vehicle
     ? `${order.vehicle.year} ${order.vehicle.make} ${order.vehicle.model}`
     : 'Your Vehicle';
-
+ 
   const steps = pipelineStages.map((s, i) => {
     const cls  = i < currentIdx ? 'done' : i === currentIdx ? 'current' : '';
     const icon = i < currentIdx ? '✓' : i === currentIdx ? '🔧' : (i + 1);
@@ -1412,10 +1580,10 @@ function renderStatusHTML(order) {
         </div>
       </div>`;
   }).join('');
-
+ 
   const techInitial = order.technician?.full_name?.[0]?.toUpperCase() || '?';
   const techName    = order.technician?.full_name || 'Unassigned';
-
+ 
   return `
     <div class="vehicle-card">
       <div class="vehicle-card-header">
@@ -1441,16 +1609,16 @@ function renderStatusHTML(order) {
       </div>
     </div>`;
 }
-
+ 
 // ============================================================
 // PAYMENTS
 // ============================================================
 async function loadInvoices() {
   const container = document.getElementById('payments-content');
   if (isGuest) { renderGuestPayments(container); return; }
-
+ 
   container.innerHTML = '<div class="loading-state"><span class="spinner"></span> Loading invoices…</div>';
-
+ 
   try {
     const { data: invoices } = await supabase
       .from('invoices')
@@ -1465,25 +1633,25 @@ async function loadInvoices() {
       .eq('customer_id', currentUser.id)
       .eq('status', 'unpaid')
       .order('created_at', { ascending: false });
-
+ 
     if (!invoices?.length) {
       container.innerHTML = `<div class="empty-state"><div class="empty-icon">💳</div><p>No outstanding invoices. You're all paid up!</p></div>`;
       return;
     }
-
+ 
     const inv = invoices[0];
     activeInvoiceId    = inv.id;
     activeInvoiceTotal = inv.total;
-
+ 
     const vehicleName = inv.order?.vehicle
       ? `${inv.order.vehicle.make} ${inv.order.vehicle.model}`
       : 'Vehicle';
     const serviceName = inv.order?.service?.name || 'Service';
-
+ 
     const lineItems = (inv.line_items || []).map(li => `
       <div class="invoice-row"><span class="label">${li.description}</span><span>$${parseFloat(li.total).toFixed(2)}</span></div>
     `).join('') || `<div class="invoice-row"><span class="label">Service</span><span>$${parseFloat(inv.subtotal).toFixed(2)}</span></div>`;
-
+ 
     container.innerHTML = `
       <div class="invoice-card">
         <div class="invoice-header">
@@ -1519,20 +1687,20 @@ async function loadInvoices() {
     container.innerHTML = `<div class="empty-state"><div class="empty-icon">⚠️</div><p>${e.message}</p></div>`;
   }
 }
-
+ 
 function selectPayMethod(el, method) {
   document.querySelectorAll('.pay-method').forEach(m => m.classList.remove('selected'));
   el.classList.add('selected');
   selectedPayMethod = method;
 }
-
+ 
 async function processPayment() {
   if (isGuest) { showToast('Sign in to process payments', true); return; }
-
+ 
   const btn = document.getElementById('pay-btn');
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span> Processing…';
-
+ 
   try {
     const { error } = await supabase
       .from('invoices')
@@ -1542,9 +1710,9 @@ async function processPayment() {
         payment_method: selectedPayMethod
       })
       .eq('id', activeInvoiceId);
-
+ 
     if (error) throw error;
-
+ 
     showToast(`Payment of $${activeInvoiceTotal.toFixed(2)} processed! ✓`);
     setTimeout(() => { showScreen('dashboard'); setNavActive('home-nav'); loadCustomerDashboard(); }, 1500);
   } catch (e) {
@@ -1553,16 +1721,16 @@ async function processPayment() {
     btn.textContent = `Pay $${activeInvoiceTotal.toFixed(2)} →`;
   }
 }
-
+ 
 // ============================================================
 // HISTORY
 // ============================================================
 async function loadHistory() {
   const container = document.getElementById('history-content');
   if (isGuest) { renderGuestHistory(container); return; }
-
+ 
   container.innerHTML = '<div class="loading-state"><span class="spinner"></span> Loading history…</div>';
-
+ 
   try {
     const { data: orders } = await supabase
       .from('repair_orders')
@@ -1574,12 +1742,12 @@ async function loadHistory() {
       .eq('customer_id', currentUser.id)
       .in('status', ['completed'])
       .order('completed_at', { ascending: false });
-
+ 
     if (!orders?.length) {
       container.innerHTML = `<div class="empty-state"><div class="empty-icon">📋</div><p>No completed services yet.</p></div>`;
       return;
     }
-
+ 
     container.innerHTML = orders.map(o => {
       const vehicle = o.vehicle ? `${o.vehicle.year} ${o.vehicle.make} ${o.vehicle.model}` : 'Vehicle';
       const date    = o.completed_at ? new Date(o.completed_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : '—';
@@ -1602,7 +1770,7 @@ async function loadHistory() {
     container.innerHTML = `<div class="empty-state"><div class="empty-icon">⚠️</div><p>${e.message}</p></div>`;
   }
 }
-
+ 
 // ============================================================
 // TECHNICIAN DASHBOARD
 // ============================================================
@@ -1611,7 +1779,7 @@ async function loadTechDashboard() {
   document.getElementById('tech-name').textContent     = name;
   document.getElementById('tech-initials').textContent = name.split(' ').map(n => n[0]).join('').toUpperCase();
   document.getElementById('tech-avatar').textContent   = name[0]?.toUpperCase();
-
+ 
   try {
     const { data: jobs } = await supabase
       .from('repair_orders')
@@ -1624,14 +1792,14 @@ async function loadTechDashboard() {
       .eq('technician_id', currentUser.id)
       .not('status', 'in', '("completed","cancelled")')
       .order('scheduled_at');
-
+ 
     document.getElementById('tech-job-count').textContent = `${jobs?.length || 0} repair order${jobs?.length !== 1 ? 's' : ''}`;
     renderJobsList(jobs || []);
   } catch (e) {
     document.getElementById('jobs-list').innerHTML = `<div class="empty-state"><p>${e.message}</p></div>`;
   }
 }
-
+ 
 function renderJobsList(jobs) {
   if (!jobs.length) {
     document.getElementById('jobs-list').innerHTML = `<div class="empty-state"><div class="empty-icon">✅</div><p>No active jobs right now.</p></div>`;
@@ -1654,7 +1822,7 @@ function renderJobsList(jobs) {
       </div>`;
   }).join('');
 }
-
+ 
 function openJobModal(id, orderNum, vehicle, service, customer, duration) {
   activeJobId = id;
   document.getElementById('job-modal-title').textContent = `Job Details · ${orderNum}`;
@@ -1666,14 +1834,14 @@ function openJobModal(id, orderNum, vehicle, service, customer, duration) {
   document.getElementById('job-complete-btn').onclick = () => markJobComplete(id);
   showModal('job-modal');
 }
-
+ 
 async function markJobComplete(jobId) {
   try {
     const { error } = await supabase
       .from('repair_orders')
       .update({ status: 'completed', completed_at: new Date().toISOString() })
       .eq('id', jobId);
-
+ 
     if (error) throw error;
     closeModal('job-modal');
     showToast('Job marked as complete ✓');
@@ -1682,37 +1850,37 @@ async function markJobComplete(jobId) {
     showToast(e.message, true);
   }
 }
-
+ 
 // ============================================================
 // ADMIN DASHBOARD
 // ============================================================
 async function loadAdminDashboard() {
-  const container = document.getElementById('admin-content');
-
+  const container = document.getElementById("tab-dashboard");
+ 
   try {
     const weekAgo  = new Date(Date.now() - 7 * 86400000).toISOString();
     const monthStart = new Date(new Date().setDate(1)).toISOString();
-
+ 
     const [apptRes, revenueRes, activeRes, ordersRes, techsRes] = await Promise.all([
-      supabase.from('repair_orders').select('id', { count: 'exact', head: true }).gte('scheduled_at', weekAgo),
-      supabase.from('invoices').select('total').eq('status', 'paid').gte('paid_at', monthStart),
-      supabase.from('repair_orders').select('id', { count: 'exact', head: true }).not('status', 'in', '("completed","cancelled","pending")'),
-      supabase.from('repair_orders').select(`
+      db.from('repair_orders').select('id', { count: 'exact', head: true }).gte('scheduled_at', weekAgo),
+      db.from('invoices').select('total').eq('status', 'paid').gte('paid_at', monthStart),
+      db.from('repair_orders').select('id', { count: 'exact', head: true }).not('status', 'in', '("completed","cancelled","pending")'),
+      db.from('repair_orders').select(`
         id, order_number, status, estimated_cost,
         vehicle:vehicles(make, model),
         service:services(name)
       `).order('created_at', { ascending: false }).limit(8),
-      supabase.from('profiles').select('id, full_name, role').in('role', ['technician'])
+      db.from('profiles').select('id, full_name, role').in('role', ['technician'])
     ]);
-
+ 
     const totalRevenue = (revenueRes.data || []).reduce((s, r) => s + parseFloat(r.total || 0), 0);
-
+ 
     const statusPill = (s) => {
       if (s === 'completed') return '<span class="status-pill completed">DONE</span>';
       if (s === 'pending')   return '<span class="status-pill pending">PENDING</span>';
       return '<span class="status-pill inprogress">IN PROG</span>';
     };
-
+ 
     const ordersHTML = (ordersRes.data || []).map(o => `
       <div class="table-row">
         <span class="order-id">${o.order_number}</span>
@@ -1723,7 +1891,7 @@ async function loadAdminDashboard() {
         ${statusPill(o.status)}
         <span class="order-amount">$${parseFloat(o.estimated_cost || 0).toFixed(0)}</span>
       </div>`).join('');
-
+ 
     const techsHTML = (techsRes.data || []).map((t, i) => {
       const colors = ['rgba(59,130,246,0.2)','rgba(34,197,94,0.2)','rgba(234,179,8,0.2)','rgba(249,115,22,0.2)'];
       const texts  = ['var(--blue)','var(--green)','var(--yellow)','var(--orange)'];
@@ -1734,7 +1902,7 @@ async function loadAdminDashboard() {
           <span class="tech-status">Active</span>
         </div>`;
     }).join('');
-
+ 
     container.innerHTML = `
       <div class="kpi-grid">
         <div class="kpi-card"><div class="kpi-label">📅 APPOINTMENTS</div><div class="kpi-value">${apptRes.count || 0}</div><div class="kpi-change up">This week</div></div>
@@ -1758,7 +1926,7 @@ async function loadAdminDashboard() {
     container.innerHTML = `<div class="empty-state"><div class="empty-icon">⚠️</div><p>${e.message}</p></div>`;
   }
 }
-
+ 
 // ============================================================
 // CHAT
 // ============================================================
@@ -1768,23 +1936,23 @@ async function loadChat() {
     container.innerHTML = `<div style="font-size:13px;color:var(--text2)">No active order to chat about.</div>`;
     return;
   }
-
+ 
   container.innerHTML = '<div class="loading-state"><span class="spinner"></span></div>';
-
+ 
   try {
     const { data: msgs } = await supabase
       .from('messages')
       .select('id, body, sender_id, created_at')
       .eq('order_id', activeOrderId)
       .order('created_at');
-
+ 
     renderMessages(msgs || []);
     subscribeToChatRealtime();
   } catch (e) {
     container.innerHTML = `<div style="font-size:13px;color:var(--text2)">${e.message}</div>`;
   }
 }
-
+ 
 function renderMessages(msgs) {
   const container = document.getElementById('chat-messages');
   if (!msgs.length) {
@@ -1799,25 +1967,25 @@ function renderMessages(msgs) {
   }).join('');
   container.scrollTop = container.scrollHeight;
 }
-
+ 
 function subscribeToChatRealtime() {
-  if (chatChannel) supabase.removeChannel(chatChannel);
+  if (chatChannel) db.removeChannel(chatChannel);
   chatChannel = supabase
     .channel(`chat-${activeOrderId}`)
     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: `order_id=eq.${activeOrderId}` },
       () => loadChat())
     .subscribe();
 }
-
+ 
 async function sendChatMessage() {
   if (isGuest) { showToast('Sign in to send messages', true); return; }
   const input = document.getElementById('chat-input');
   const body  = input.value.trim();
   if (!body || !activeOrderId) return;
-
+ 
   input.value = '';
   try {
-    const { error } = await supabase.from('messages').insert({
+    const { error } = await db.from('messages').insert({
       order_id:  activeOrderId,
       sender_id: currentUser.id,
       body
@@ -1827,7 +1995,7 @@ async function sendChatMessage() {
     showToast(e.message, true);
   }
 }
-
+ 
 // ============================================================
 // GUEST FALLBACK DATA
 // ============================================================
@@ -1853,7 +2021,7 @@ function loadGuestDashboard() {
   loadServices();
   buildDateRow();
 }
-
+ 
 function loadGuestTech() {
   document.getElementById('tech-name').textContent     = 'Mike Chen (Guest)';
   document.getElementById('tech-initials').textContent = 'M';
@@ -1877,9 +2045,9 @@ function loadGuestTech() {
       <div class="job-arrow">›</div>
     </div>`).join('');
 }
-
+ 
 function loadGuestAdmin() {
-  const container = document.getElementById('admin-content');
+  const container = document.getElementById("tab-dashboard");
   container.innerHTML = `
     <div style="background:rgba(234,179,8,0.08);border:1px solid rgba(234,179,8,0.2);border-radius:12px;padding:14px;display:flex;gap:10px;align-items:flex-start;margin-bottom:8px">
       <span style="font-size:18px">ℹ️</span>
@@ -1903,7 +2071,7 @@ function loadGuestAdmin() {
     </div>
     <div style="height:20px"></div>`;
 }
-
+ 
 function renderGuestStatus(container) {
   container.innerHTML = `
     <div class="vehicle-card">
@@ -1922,7 +2090,7 @@ function renderGuestStatus(container) {
       </div>
     </div>`;
 }
-
+ 
 function renderGuestPayments(container) {
   container.innerHTML = `
     <div class="invoice-card">
@@ -1936,7 +2104,7 @@ function renderGuestPayments(container) {
       ℹ️ Sign in to view and pay real invoices.
     </div>`;
 }
-
+ 
 function renderGuestHistory(container) {
   const items = [
     { vehicle:'Tesla Model 3', service:'Transmission Service', amount:'$1,250.00', date:'Apr 20, 2026' },
@@ -1952,7 +2120,150 @@ function renderGuestHistory(container) {
       <span class="badge complete" style="font-size:11px">Completed</span>
     </div>`).join('');
 }
-
+ 
+// ============================================================
+// ADMIN TABS
+// ============================================================
+function switchAdminTab(tabId) {
+  // Switch panel
+  document.querySelectorAll('.admin-tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  // Switch button highlight
+  document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  // Load data for that tab
+  if (tabId === 'tab-appointments') renderAdminApptList();
+  if (tabId === 'tab-orders') renderAdminOrderList();
+}
+ 
+// ============================================================
+// ADMIN — APPOINTMENTS
+// ============================================================
+const adminAppointments = [];
+ 
+function adminCreateAppointment() {
+  const customer = document.getElementById('appt-customer').value.trim();
+  const make     = document.getElementById('appt-make').value.trim();
+  const model    = document.getElementById('appt-model').value.trim();
+  const year     = document.getElementById('appt-year').value.trim();
+  const service  = document.getElementById('appt-service').value;
+  const date     = document.getElementById('appt-date').value;
+  const time     = document.getElementById('appt-time').value;
+  const tech     = document.getElementById('appt-tech').value;
+  const notes    = document.getElementById('appt-notes').value.trim();
+ 
+  if (!customer || !make || !model || !service || !date || !time) {
+    showToast('Please fill in all required fields', true);
+    return;
+  }
+ 
+  const techNames = {
+    'tech-1': 'Mike Chen', 'tech-2': 'Sarah Johnson',
+    'tech-3': 'James Lee', 'tech-4': 'Emily Brown'
+  };
+ 
+  adminAppointments.unshift({
+    id: Date.now(),
+    customer, vehicle: `${year} ${make} ${model}`.trim(),
+    service, date, time,
+    technician: techNames[tech] || 'Unassigned',
+    notes
+  });
+ 
+  // Clear form
+  ['appt-customer','appt-make','appt-model','appt-year','appt-notes'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('appt-service').value = '';
+  document.getElementById('appt-tech').value = '';
+  document.getElementById('appt-date').value = '';
+  document.getElementById('appt-time').value = '09:00';
+ 
+  showToast('Appointment booked! ✓');
+  renderAdminApptList();
+}
+ 
+function renderAdminApptList() {
+  const container = document.getElementById('admin-appt-list');
+  if (!adminAppointments.length) {
+    container.innerHTML = '<div class="empty-state"><div class="empty-icon">📅</div><p>No appointments booked yet.</p></div>';
+    return;
+  }
+  container.innerHTML = adminAppointments.map(a => {
+    const dateStr = a.date ? new Date(a.date + 'T' + a.time).toLocaleString('en-US', { month:'short', day:'numeric', hour:'numeric', minute:'2-digit' }) : '—';
+    return `
+      <div class="order-item">
+        <div class="order-item-left">
+          <div class="oi-name">${a.customer} — ${a.vehicle}</div>
+          <div class="oi-meta">${a.service} · ${dateStr}</div>
+          <div class="oi-meta">👤 ${a.technician}${a.notes ? ' · ' + a.notes : ''}</div>
+        </div>
+        <span class="status-pill pending">BOOKED</span>
+      </div>`;
+  }).join('');
+}
+ 
+// ============================================================
+// ADMIN — PRODUCT ORDERS
+// ============================================================
+const adminOrders = [];
+ 
+function updateOrderTotal() {
+  const qty   = parseFloat(document.getElementById('prod-qty').value)   || 0;
+  const price = parseFloat(document.getElementById('prod-price').value) || 0;
+  document.getElementById('prod-total').textContent = '$' + (qty * price).toFixed(2);
+}
+ 
+function adminSubmitOrder() {
+  const name     = document.getElementById('prod-name').value.trim();
+  const category = document.getElementById('prod-category').value;
+  const qty      = parseInt(document.getElementById('prod-qty').value)    || 0;
+  const price    = parseFloat(document.getElementById('prod-price').value) || 0;
+  const supplier = document.getElementById('prod-supplier').value.trim();
+ 
+  if (!name || !category || qty < 1 || price <= 0) {
+    showToast('Please fill in all required fields', true);
+    return;
+  }
+ 
+  adminOrders.unshift({
+    id: Date.now(),
+    name, category, qty, price,
+    total: qty * price,
+    supplier: supplier || 'Not specified',
+    date: new Date().toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' })
+  });
+ 
+  // Clear form
+  ['prod-name','prod-supplier'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('prod-category').value = '';
+  document.getElementById('prod-qty').value = '1';
+  document.getElementById('prod-price').value = '';
+  document.getElementById('prod-total').textContent = '$0.00';
+ 
+  showToast('Order placed! ✓');
+  renderAdminOrderList();
+}
+ 
+function renderAdminOrderList() {
+  const container = document.getElementById('admin-order-list');
+  if (!adminOrders.length) {
+    container.innerHTML = '<div class="empty-state"><div class="empty-icon">📦</div><p>No orders placed yet.</p></div>';
+    return;
+  }
+  container.innerHTML = adminOrders.map(o => `
+    <div class="order-item">
+      <div class="order-item-left">
+        <div class="oi-name">${o.name}</div>
+        <div class="oi-meta">${o.category} · ${o.supplier} · ${o.date}</div>
+      </div>
+      <div class="order-item-right">
+        <div class="oi-qty">x${o.qty}</div>
+        <div class="oi-price">$${o.total.toFixed(2)}</div>
+      </div>
+    </div>`).join('');
+}
+ 
 // ============================================================
 // MODAL HELPERS
 // ============================================================
@@ -1960,11 +2271,11 @@ function showModal(id) {
   document.getElementById(id).classList.add('show');
   if (id === 'chat-modal') loadChat();
 }
-
+ 
 function closeModal(id) {
   document.getElementById(id).classList.remove('show');
 }
-
+ 
 // ============================================================
 // TOAST
 // ============================================================
@@ -1975,7 +2286,7 @@ function showToast(msg, isError = false) {
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2800);
 }
-
+ 
 // ============================================================
 // 2FA AUTO-ADVANCE
 // ============================================================
@@ -1985,15 +2296,15 @@ document.querySelectorAll('.tfa-box').forEach((box, i, boxes) => {
     if (i === boxes.length - 1 && box.value.length === 1) handleMfaVerify();
   });
 });
-
+ 
 // ============================================================
 // SESSION RESTORE ON LOAD
 // ============================================================
 (async () => {
-  const { data: { session } } = await supabase.auth.getSession();
+  const { data: { session } } = await db.auth.getSession();
   if (session?.user) {
     currentUser = session.user;
-    const { data: profile } = await supabase.from('profiles').select('*').eq('id', session.user.id).single();
+    const { data: profile } = await db.from('profiles').select('*').eq('id', session.user.id).single();
     if (profile) {
       currentProfile = profile;
       if      (profile.role === 'technician') { showScreen('technician'); loadTechDashboard(); }
